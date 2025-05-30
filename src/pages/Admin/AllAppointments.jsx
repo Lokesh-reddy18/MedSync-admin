@@ -8,7 +8,7 @@ import { assets } from '../../assets/assets'
 const AllAppointments = () => {
 
   const { adminToken, appointments, getAllAppointments, cancelAppointment } = useContext(AdminContext)
-  const { calculateAge, slotDateFormat, currency } = useContext(AppContext)
+  const { calculateAge, slotDateFormat, formatCurrency } = useContext(AppContext)
 
   useEffect(() => {
     if (adminToken) {
@@ -41,7 +41,7 @@ const AllAppointments = () => {
             <div className='flex items-center gap-2'>
               <img className='w-8 rounded-full bg-gray-200' src={item.docData.image} alt="" /> <p>{item.docData.name}</p>
             </div>
-            <p>{currency}{item.amount}</p>
+            <p>{formatCurrency(item.amount)}</p>
             {
               item.cancelled
                 ? <p className='text-red-400 text-xs font-medium'>Cancelled</p>
