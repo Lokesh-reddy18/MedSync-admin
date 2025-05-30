@@ -6,7 +6,7 @@ import { AppContext } from '../../context/AppContext'
 const DoctorDashboard = () => {
 
   const { dToken, dashData, setDashData, getDashData, completeAppointment, cancelAppointment } = useContext(DoctorContext)
-  const { currency, slotDateFormat } = useContext(AppContext)
+  const { currency, formatCurrency, slotDateFormat } = useContext(AppContext)
 
   useEffect(() => {
     if (dToken) {
@@ -20,7 +20,7 @@ const DoctorDashboard = () => {
         <div className='flex items-center gap-2 bg-white p-4 min-w-52 rounded border-2 border-gray-100 cursor-pointer hover:scale-105 transition-all'>
           <img className='w-14' src={assets.earning_icon} alt="" />
           <div>
-            <p className='text-xl font-semibold text-gray-600'>{currency}{dashData.earnings}</p>
+            <p className='text-xl font-semibold text-gray-600'>{formatCurrency(dashData.earnings)}</p>
             <p className='text-gray-400'>Earnings</p>
           </div>
         </div>
