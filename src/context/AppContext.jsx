@@ -4,7 +4,7 @@ export const AppContext = createContext()
 
 const AppContextProvider = (props) => {
 
-      const currency = '$'
+      const currency = '₹'
 
       const calculateAge = (dob) => {
             const today = new Date()
@@ -20,10 +20,21 @@ const AppContextProvider = (props) => {
             return dateArray[0] + " " + months[Number(dateArray[1])] + " " + dateArray[2]
       }
 
+      // Format currency to Indian Rupees
+      const formatCurrency = (amount) => {
+            return new Intl.NumberFormat('en-IN', {
+                  style: 'currency',
+                  currency: 'INR',
+                  minimumFractionDigits: 0,
+                  maximumFractionDigits: 0
+            }).format(amount);
+      }
+
       const value = {
             calculateAge,
             slotDateFormat,
-            currency
+            currency,
+            formatCurrency
       }
 
       return (
