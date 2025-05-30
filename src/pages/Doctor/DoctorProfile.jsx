@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 const DoctorProfile = () => {
   const { dToken, profileData, setProfileData, getProfileData } = useContext(DoctorContext)
-  const { currency, backendUrl } = useContext(AppContext)
+  const { currency, formatCurrency, backendUrl } = useContext(AppContext)
   const [isEdit, setIsEdit] = useState(false)
 
   const updateProfile = async () => {
@@ -56,13 +56,13 @@ const DoctorProfile = () => {
           </div>
 
           <p className='text-gray-600 font-medium mt-4'>Appointment Fee: <span className='text-gray-800'>
-            {currency} {isEdit ? (
+            {isEdit ? (
               <input
-                type='number'
                 onChange={(e) => setProfileData(prev => ({ ...prev, fees: e.target.value }))}
                 value={profileData.fees}
+                className='border rounded px-2 py-1 w-24'
               />
-            ) : profileData.fees}
+            ) : formatCurrency(profileData.fees)}
           </span></p>
 
           <div className='flex gap-2 py-2'>
